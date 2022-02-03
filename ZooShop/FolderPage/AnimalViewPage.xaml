@@ -1,0 +1,79 @@
+﻿<Page x:Class="ZooShop.FolderPage.AnimalViewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ZooShop.FolderPage"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AnimalViewPage" IsVisibleChanged="Page_IsVisibleChanged">
+    
+    <DockPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+
+
+            <ListView x:Name="lvAnimals" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="#FF76E383">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel HorizontalAlignment="Center" Width="350" Style="{StaticResource accentPanel}">
+
+                            <Image Width="350" Height="300" Stretch="Uniform" Margin="5">
+                                <Image.Source>
+                                    <Binding Path="photoPreview">
+                                        <Binding.TargetNullValue>
+                                            <ImageSource>
+                                                /ZooShop;component/Resources/animal.png
+                                            </ImageSource>
+                                        </Binding.TargetNullValue>
+                                    </Binding>
+                                </Image.Source>
+                            </Image>
+
+                            <TextBlock Text="{Binding nameAnimal}" HorizontalAlignment="Center" Foreground="#FFF"/>
+
+                            <Button x:Name="btEditAnimal" Content="Информация" Click="btEditAnimal_Click"/>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <ComboBox x:Name="cmbxTypeOfAnimal" Grid.Column="0" SelectedIndex="0" SelectionChanged="cmbxTypeOfAnimal_SelectionChanged">
+                    <ComboBoxItem Content="Фильтр по животным"/>
+                    <ComboBoxItem Content="Рыбки"/>
+                    <ComboBoxItem Content="Попугаи"/>
+                    <ComboBoxItem Content="Рептилии"/>
+                    <ComboBoxItem Content="Котики"/>
+                    <ComboBoxItem Content="Собаки"/>
+                </ComboBox>
+
+                <ComboBox x:Name="cmbxPlaceOfAnimal" Grid.Column="1" SelectedIndex="0" SelectionChanged="cmbxPlaceOfAnimal_SelectionChanged">
+                    <ComboBoxItem Content="Фильтр по частям света"/>
+                    <ComboBoxItem Content="Америка"/>
+                    <ComboBoxItem Content="Азия"/>
+                    <ComboBoxItem Content="Африка"/>
+                    <ComboBoxItem Content="Европа"/>
+                    <ComboBoxItem Content="Австралия"/>
+                </ComboBox>
+            </Grid>
+        </Grid>
+
+    </DockPanel>
+</Page>
